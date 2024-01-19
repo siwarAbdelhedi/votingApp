@@ -1,0 +1,30 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Environment
+.env
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# Dependency directories
+jspm_packages/
+typings/
+
+# Distribution directories
+dist/
+out/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+

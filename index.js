@@ -6,6 +6,10 @@ const userRoutes = require('./routes/userManagement');
 const musicRoutes = require('./routes/musicManagement');
 const voteRoutes = require('./routes/voteManagement');
 const votingSessionRoutes = require('./routes/voteSessionManagement');
+const spotifyroute = require('./routes/spotifyRoute');
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpecs = require('./swaggerConfig');
 
 dotenv.config();
 
@@ -13,7 +17,6 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-
 
 mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
@@ -32,6 +35,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/music', musicRoutes);
 app.use('/api/vote', voteRoutes);
 app.use('/api/voting-session', votingSessionRoutes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+app.use('/api/spotify', spotifyroute);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

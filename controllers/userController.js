@@ -1,6 +1,9 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const secretTOKEN = process.env.JWT_SECRET_KEY;
 
@@ -25,6 +28,7 @@ const login = async(req, res) =>{
         const {email, password} = req.body;
         // vérification d'un utilisateur avec cette email
         const existingUser = await User.findOne({email});
+        console.log('test ',existingUser);
         if (!existingUser) {
             res.status(400).json({error:'Not existing User or Invalid Email'});
         }
