@@ -36,7 +36,7 @@ app.use('/api/music', musicRoutes);
 app.use('/api/vote', voteRoutes);
 app.use('/api/voting-session', votingSessionRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
-app.use('/api/spotify', spotifyroute);
+app.use(spotifyroute);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
