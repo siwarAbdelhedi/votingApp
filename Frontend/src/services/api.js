@@ -55,6 +55,35 @@ const fetchActiveSessions = async () => {
   }
 };
 
+const fetchMusics = async (sessionId) => {
+
+  try {
+    const response = await axios.get(`${API_BASE_URL}/music/get-musics/${sessionId}`);
+    console.log(response.data);
+    return response.data ;
+  } catch (error) {
+    console.error('Error fetching active sessions:', error.response.data.error);
+  }
+
+};
+
+const vote = async (userId, sessionId, musicId, rate) => {
+  try {
+    console.log(userId); console.log(musicId);
+    const response = await axios.post(`${API_BASE_URL}/vote/vote/${sessionId}`, 
+    {
+      user: userId, 
+      music: musicId,
+      rating: rate
+  });
+
+  console.log('response successful:', response.data);
+  return (response.data);
+
+} catch (error) {
+  console.error('Response failed:', error.response.data.error);
+}
+}
 
 
 
@@ -67,8 +96,6 @@ const fetchActiveSessions = async () => {
 
 
 
-
-
-const api = {loginSpotify, login, register, fetchActiveSessions};
+const api = {loginSpotify, login, register, fetchActiveSessions, fetchMusics, vote };
 
 export default api ;

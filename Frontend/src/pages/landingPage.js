@@ -10,7 +10,7 @@ const LandingPage = () => {
    
     const getActiveSessions = async () => {
       try {
-        const response = api.fetchActiveSessions();
+        const response = await api.fetchActiveSessions();
         console.log(response);
         setActiveSessions(response);
 
@@ -21,7 +21,9 @@ const LandingPage = () => {
     getActiveSessions();
   }, []);
 
-
+  const listMusics = (sessionId) => {
+    window.location.href = `/musics/${sessionId}`;
+  }
 
   return (
     <div>
@@ -32,6 +34,7 @@ const LandingPage = () => {
           <li key={session._id}>
             <p>Module Name: {session.module_name}</p>
             <p>Expiration Date: {session.expiration_date}</p>
+            <button onClick={listMusics(session._id)}>Musics</button>
           </li>
         ))}
       </ul>
