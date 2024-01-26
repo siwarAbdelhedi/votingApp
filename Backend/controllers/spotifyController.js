@@ -28,26 +28,26 @@ const callMusic = async (req, res) => {
 
         // Set the access token and refresh token on the Spotify API object.
         spotifyApi.setAccessToken(accessToken); console.log('console 8');
-        spotifyApi.setRefreshToken(refreshToken); console.log('console1');
+        spotifyApi.setRefreshToken(refreshToken); console.log('console9');
 
         // Logging tokens can be a security risk; this should be avoided in production.
-        console.log('The access token is ' + accessToken); console.log('console 9');
-        console.log('The refresh token is ' + refreshToken); console.log('console10');
+        console.log('The access token is ' + accessToken); console.log('console10');
+        console.log('The refresh token is ' + refreshToken); console.log('console 11');
 
         // Send a success message to the user.
-        res.send('Login successful! You can now use the /search and /play endpoints.');console.log('console11');
+        res.send('Login successful! You can now use the /search and /play endpoints.');console.log('console12');
 
         // Refresh the access token periodically before it expires.
         setInterval(async () => {
-            const data = await spotifyApi.refreshAccessToken(); console.log('console12');
-            const accessTokenRefreshed = data.body['access_token']; console.log('console13');
-            spotifyApi.setAccessToken(accessTokenRefreshed); console.log('console14');
+            const data = await spotifyApi.refreshAccessToken(); console.log('console13');
+            const accessTokenRefreshed = data.body['access_token']; console.log('console14');
+            spotifyApi.setAccessToken(accessTokenRefreshed); console.log('console15');
         }, expiresIn / 2 * 1000); // Refresh halfway before expiration. 
-           console.log('console1');
+           console.log('console16');
 
     }).catch(error => {
-        console.error('Error getting Tokens:', error); console.log('console15');
-        res.send('Error getting tokens'); console.log('console16');
+        console.error('Error getting Tokens:', error); console.log('console17');
+        res.send('Error getting tokens'); console.log('console18');
     });
 };
 
@@ -55,17 +55,17 @@ const callMusic = async (req, res) => {
 // Route handler for the search endpoint.
 const searchMusic = async (req, res) => {
     // Extract the search query parameter.
-    const { q } = req.query; console.log('console17');
+    const { q } = req.query; console.log('console19');
 
     // Make a call to Spotify's search API with the provided query.
     spotifyApi.searchTracks(q).then(searchData => {
         // Extract the URI of the first track from the search results.
-        const trackUri = searchData.body.tracks.items[0].uri; console.log('console18');
+        const trackUri = searchData.body.tracks.items[0].uri; console.log('console20');
         // Send the track URI back to the client.
-        res.send({ uri: trackUri }); console.log('console19');
+        res.send({ uri: trackUri }); console.log('console21');
     }).catch(err => {
-        console.error('Search Error:', err); console.log('console20');
-        res.send('Error occurred during search'); console.log('console 20 ');
+        console.error('Search Error:', err); console.log('console22');
+        res.send('Error occurred during search'); console.log('console 23 ');
     });
 };
 
@@ -76,10 +76,10 @@ const playMusic = async (req, res) => {
 
     // Send a request to Spotify to start playback of the track with the given URI.
     spotifyApi.play({ uris: [uri] }).then(() => {
-        res.send('Playback started 21 ');
+        res.send('Playback started 24 ');
     }).catch(err => {
         console.error('Play Error:', err);
-        res.send('Error occurred during playback 22 ');
+        res.send('Error occurred during playback 25 ');
     });
 };
 

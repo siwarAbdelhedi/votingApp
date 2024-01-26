@@ -26,4 +26,19 @@ const getSession = async (req, res) => {
   }
 };
 
-module.exports = { createSession, getSession };
+const getActiveVotingSessions = async (req, res) => {
+  try {
+    const currentDate = new Date();
+ 
+    const activeSessions = await VotingSession.find({ expiration_date: { $gt: currentDate } });
+
+    res.status(200).json(activeSessions);
+  } catch (error) {
+    console.error('Error fetching active sessions:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+
+module.exports = { createSession, getSession, getActiveVotingSessions };

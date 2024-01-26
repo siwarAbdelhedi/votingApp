@@ -13,6 +13,11 @@ const votingSessionSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Music',
   }],
+  
+  votes: [{  
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Vote',
+  }],
 });
 
 const VotingSession = mongoose.model('VotingSession', votingSessionSchema);

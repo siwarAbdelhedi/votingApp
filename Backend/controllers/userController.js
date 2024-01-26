@@ -34,7 +34,6 @@ const login = async(req, res) =>{
         const {email, password} = req.body;
         // vérification d'un utilisateur avec cette email
         const existingUser = await User.findOne({email});
-        console.log('test ',existingUser);
         if (!existingUser) {
             res.status(400).json({error:'Not existing User or Invalid Email'});
         }
@@ -45,7 +44,8 @@ const login = async(req, res) =>{
         }
         //Données correct
         const token = jwt.sign({userId: existingUser._id, role: existingUser.role},secretTOKEN, {expiresIn:'1h'});
-        res.status(200).json({token});
+        res.status(200).json({user: existingUser,
+            token: token,});
     } catch (error) {
         res.status(500).json({error:'login failed'});
         
