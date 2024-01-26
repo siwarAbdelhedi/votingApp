@@ -69,21 +69,29 @@ const fetchMusics = async (sessionId) => {
 
 const vote = async (userId, sessionId, musicId, rate) => {
   try {
-    console.log(userId); console.log(musicId);
-    const response = await axios.post(`${API_BASE_URL}/vote/vote/${sessionId}`, 
-    {
-      user: userId, 
-      music: musicId,
-      rating: rate
-  });
+    console.log(userId);
+    console.log(musicId);
 
-  console.log('response successful:', response.data);
-  return (response.data);
+    const response = await axios.post(
+      `${API_BASE_URL}/vote/vote/${sessionId}`,
+      {
+        user_id: userId,
+        music_id: musicId,
+        rating: rate,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',         },
+      }
+    );
 
-} catch (error) {
-  console.error('Response failed:', error.response.data.error);
-}
-}
+    console.log('response successful:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Response failed:', error.response.data.error);
+    throw error; 
+  }
+};
 
 
 

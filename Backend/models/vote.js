@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const voteSchema = new mongoose.Schema({
-  user: {
+  user_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
   },
-  music: {
+  music_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Music',
     required: true,
