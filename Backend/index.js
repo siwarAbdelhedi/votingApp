@@ -9,7 +9,7 @@ const votingSessionRoutes = require('./routes/voteSessionManagement');
 const spotifyroute = require('./routes/spotifyRoute');
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpecs = require('./swaggerConfig');
+const swaggerSpec = require('./swagger');
 
 dotenv.config();
 
@@ -35,8 +35,11 @@ app.use('/api/users', userRoutes);
 app.use('/api/music', musicRoutes);
 app.use('/api/vote', voteRoutes);
 app.use('/api/voting-session', votingSessionRoutes);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+
 app.use(spotifyroute);
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

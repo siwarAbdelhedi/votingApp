@@ -94,16 +94,6 @@ const vote = async (userId, sessionId, musicId, rate) => {
 };
 
 
-
-
-
-
-
-
-
-
-
-
 const api = {loginSpotify, login, register, fetchActiveSessions, fetchMusics, vote };
 
 export default api ;

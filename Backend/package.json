@@ -4,8 +4,8 @@
   "description": "c'est le travail de Siwar Abdelhedi. C'est une plateforme de vote pour musique",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "test": "mocha tests/*.test.js"
   },
   "author": "Siwar Abdelhedi",
   "license": "ISC",
@@ -20,5 +20,10 @@
     "spotify-web-api-node": "^5.0.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "chai": "^5.0.3",
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.4"
   }
 }
