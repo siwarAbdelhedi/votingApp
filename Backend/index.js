@@ -36,12 +36,11 @@ app.use('/api/music', musicRoutes);
 app.use('/api/vote', voteRoutes);
 app.use('/api/voting-session', votingSessionRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-
-
 app.use(spotifyroute);
 
-
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+module.exports = { app, server };
